@@ -1,3 +1,26 @@
+function detectDeviceType(userAgent) {
+  const ua = userAgent || '';
+  if (/iPad|Tablet|PlayBook|Silk/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua))) {
+    return 'tablet';
+  }
+  if (/Mobi|Android|iPhone|iPod|IEMobile|Opera Mini/i.test(ua)) {
+    return 'mobile';
+  }
+  return 'desktop';
+}
+
+function detectBrowser(userAgent) {
+  const ua = userAgent || '';
+  if (/Edg\//i.test(ua)) return 'Edge';
+  if (/OPR\//i.test(ua) || /Opera/i.test(ua)) return 'Opera';
+  if (/SamsungBrowser\//i.test(ua)) return 'Samsung Internet';
+  if (/CriOS\//i.test(ua)) return 'Chrome';
+  if (/Chrome\//i.test(ua)) return 'Chrome';
+  if (/FxiOS\//i.test(ua) || /Firefox\//i.test(ua)) return 'Firefox';
+  if (/Safari\//i.test(ua) && /Version\//i.test(ua)) return 'Safari';
+  return 'Other';
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
@@ -28,6 +51,13 @@ module.exports = async function handler(req, res) {
   const path = String(body.path || '/').slice(0, 500);
   const referrer = body.referrer ? String(body.referrer).slice(0, 1000) : null;
   const userAgent = req.headers['user-agent'] ? String(req.headers['user-agent']).slice(0, 1000) : null;
+  const deviceType = detectDeviceType(userAgent);
+  const browser = detectBrowser(userAgent);
+
+  const rawCountry = req.headers['x-vercel-ip-country'];
+  const country = rawCountry && /^[A-Za-z]{2}$/.test(String(rawCountry))
+    ? String(rawCountry).toUpperCase()
+    : null;
 
   try {
     const response = await fetch(`${supabaseUrl}/rest/v1/site_visits`, {
@@ -42,7 +72,10 @@ module.exports = async function handler(req, res) {
         visitor_id: visitorId,
         path,
         referrer,
-        user_agent: userAgent
+        user_agent: userAgent,
+        device_type: deviceType,
+        browser,
+        country
       })
     });
 
