@@ -13,39 +13,29 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Analytics is not configured' });
   }
 
-  const headers = {
-    apikey: supabaseKey,
-    Authorization: `Bearer ${supabaseKey}`,
-    'Content-Type': 'application/json'
-  };
-
   try {
-    const [summaryResponse, dailyResponse] = await Promise.all([
-      fetch(`${supabaseUrl}/rest/v1/rpc/site_stats_summary`, {
-        method: 'POST', headers, body: '{}'
-      }),
-      fetch(`${supabaseUrl}/rest/v1/rpc/site_stats_daily`, {
-        method: 'POST', headers, body: JSON.stringify({ days_back: 30 })
-      })
-    ]);
+    const response = await fetch(`${supabaseUrl}/rest/v1/rpc/site_stats_summary`, {
+      method: 'POST',
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: '{}'
+    });
 
-    if (!summaryResponse.ok || !dailyResponse.ok) {
-      const summaryError = summaryResponse.ok ? '' : await summaryResponse.text();
-      const dailyError = dailyResponse.ok ? '' : await dailyResponse.text();
-      console.error('Stats query failed:', summaryError, dailyError);
+    if (!response.ok) {
+      const detail = await response.text();
+      console.error('Stats query failed:', response.status, detail);
       return res.status(502).json({ error: 'Could not load stats' });
     }
 
-    const summaryRows = await summaryResponse.json();
-    const daily = await dailyResponse.json();
-    const summary = Array.isArray(summaryRows) && summaryRows.length ? summaryRows[0] : {
-      total_views: 0,
-      unique_visitors: 0,
-      views_today: 0,
-      unique_today: 0
-    };
+    const rows = await response.json();
+    const uniqueVisitors = Array.isArray(rows) && rows.length
+      ? Number(rows[0].unique_visitors || 0)
+      : 0;
 
-    return res.status(200).json({ summary, daily });
+    return res.status(200).json({ visitors: uniqueVisitors });
   } catch (error) {
     console.error('Stats endpoint failed:', error);
     return res.status(500).json({ error: 'Could not load stats' });
