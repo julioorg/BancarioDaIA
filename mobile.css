@@ -1,0 +1,100 @@
+/* Mobile-first refinements for IAResumo */
+html{scroll-padding-top:58px}
+body{overflow-x:hidden}
+img,svg{max-width:100%;height:auto}
+section{scroll-margin-top:62px}
+a{overflow-wrap:anywhere}
+nav .wrap{-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-snap-type:x proximity}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;scroll-snap-align:start}
+summary,.support-button,nav a{touch-action:manipulation}
+.sources a{word-break:break-word}
+
+@media(max-width:768px){
+  body{font-size:16px;line-height:1.56}
+  header{padding:30px 16px 24px}
+  .kicker{font-size:.73rem;letter-spacing:.075em}
+  h1{font-size:clamp(1.95rem,9vw,2.5rem);line-height:1.03;margin:.32rem 0 .65rem}
+  .lead{font-size:.98rem;line-height:1.5}
+  .stamp{margin-top:11px;padding:6px 9px;font-size:.76rem}
+  .topwarn{margin-top:14px;padding:10px 12px;border-radius:10px;font-size:.84rem;line-height:1.45}
+
+  nav .wrap{gap:7px;padding:7px 10px}
+  nav a{font-size:.77rem;padding:7px 9px;border-radius:999px;background:#f4f7fa;border:1px solid #e6ebf0}
+
+  main{padding:12px 10px 48px}
+  section{padding:18px 16px;margin-bottom:12px;border-radius:14px;box-shadow:0 5px 18px rgba(26,45,75,.035)}
+  h2{font-size:1.36rem;margin-bottom:7px}
+  h3{font-size:1.06rem;margin:20px 0 7px}
+  p{margin:8px 0}
+  ul,ol{padding-left:20px}
+  li{margin:6px 0}
+
+  .note,.alert,.good,.legal{padding:11px 12px;margin:11px 0;border-radius:8px}
+  .card{padding:14px;border-radius:12px}
+  .callout{font-size:1rem;padding:13px;border-radius:10px}
+  .layer{padding:13px}
+
+  .case{border-radius:12px;margin:9px 0}
+  .case summary{min-height:48px;display:flex;align-items:center;padding:13px 14px;line-height:1.35}
+  .case .inside{padding:6px 13px 14px}
+  .case .lesson{padding:10px 11px}
+
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:.84rem;border:1px solid var(--line);border-radius:10px;background:#fff}
+  th,td{min-width:120px;padding:9px 8px}
+  th:first-child,td:first-child{min-width:145px}
+  th{font-size:.7rem}
+
+  .audit{grid-template-columns:1fr;gap:2px}
+  .columns{grid-template-columns:1fr}
+
+  .support-cta{grid-template-columns:56px minmax(0,1fr);gap:10px;padding:10px 11px;margin-bottom:12px;border-radius:12px}
+  .support-logo{width:52px}
+  .support-title{font-size:.94rem}
+  .support-copy p{font-size:.81rem;line-height:1.38}
+  .support-actions{grid-column:1/-1;padding-left:0;max-width:none;justify-content:flex-start;gap:7px}
+  .support-button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 12px;font-size:.78rem;white-space:normal;text-align:center}
+
+  footer{padding:0 14px 30px;font-size:.79rem}
+}
+
+@media(max-width:600px){
+  .grid,.grid3,.flow{grid-template-columns:1fr}
+  .step:after{display:none}
+  .risk,.badge{white-space:normal}
+}
+
+@media(max-width:480px){
+  header{padding:27px 14px 22px}
+  h1{font-size:1.92rem}
+  .lead{font-size:.96rem}
+  .topwarn{font-size:.82rem}
+
+  nav .wrap{padding:6px 8px;gap:6px}
+  nav a{font-size:.75rem;padding:6px 8px}
+
+  main{padding:10px 8px 42px}
+  section{padding:16px 14px;border-radius:12px;margin-bottom:10px}
+  h2{font-size:1.28rem}
+  h3{font-size:1.03rem}
+  .card{padding:13px}
+  .note,.alert,.good,.legal{padding:10px 11px}
+
+  .support-cta{grid-template-columns:50px minmax(0,1fr);gap:9px;padding:9px 10px}
+  .support-logo{width:48px}
+  .support-title{font-size:.91rem}
+  .support-copy p{font-size:.79rem}
+  .support-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .support-button{width:100%;min-width:0;padding:8px 7px;font-size:.74rem}
+
+  table{font-size:.8rem}
+  th,td{min-width:112px;padding:8px 7px}
+  th:first-child,td:first-child{min-width:135px}
+  .small,.case-source{font-size:.78rem}
+}
+
+@media(max-width:360px){
+  h1{font-size:1.78rem}
+  .support-actions{grid-template-columns:1fr}
+  .support-button{font-size:.76rem}
+}
