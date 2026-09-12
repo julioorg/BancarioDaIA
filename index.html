@@ -10,6 +10,48 @@
 <body>
   <div id="app" style="font-family:Arial,sans-serif;padding:24px">Carregando…</div>
   <script>
+    function getVisitorId() {
+      const key = 'bancariodaia_visitor_id';
+      let id = localStorage.getItem(key);
+      if (!id) {
+        id = (window.crypto && window.crypto.randomUUID)
+          ? window.crypto.randomUUID().replaceAll('-', '')
+          : `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+        localStorage.setItem(key, id);
+      }
+      return id;
+    }
+
+    async function trackVisit() {
+      try {
+        await fetch('/api/visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          keepalive: true,
+          body: JSON.stringify({
+            visitor_id: getVisitorId(),
+            path: location.pathname,
+            referrer: document.referrer || null
+          })
+        });
+      } catch (error) {
+        console.debug('Contador de visitas indisponível:', error);
+      }
+    }
+
+    async function loadVisitorCount() {
+      const target = document.getElementById('visitor-count');
+      if (!target) return;
+      try {
+        const response = await fetch('/api/stats', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        target.textContent = new Intl.NumberFormat('pt-BR').format(data.visitors || 0);
+      } catch (error) {
+        target.textContent = '—';
+      }
+    }
+
     (async () => {
       const files = [
         '/part1.html','/part2.html','/part3.html','/part4.html',
@@ -21,6 +63,8 @@
         return response.text();
       }));
       document.getElementById('app').outerHTML = parts.join('');
+      await trackVisit();
+      await loadVisitorCount();
     })().catch((error) => {
       document.getElementById('app').innerHTML = '<strong>Erro ao carregar o conteúdo.</strong><br>' + error.message;
     });
