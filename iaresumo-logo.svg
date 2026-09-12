@@ -1,17 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 118" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-labelledby="title desc">
   <title id="title">IAResumo</title>
-  <desc id="desc">Marca IAResumo com símbolo acima e nome abaixo, em azul e laranja</desc>
-  <rect width="120" height="118" rx="18" fill="#ffffff"/>
-  <g transform="translate(25 8)">
-    <path d="M25 5c-9 0-16 6-16 14 0 3 1 6 3 8-4 2-7 6-7 11 0 7 6 13 13 13h16V10c-3-3-6-5-9-5z" fill="#176da8"/>
-    <path d="M18 17h7m-7 9h11m-11 9h8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="18" cy="17" r="2.7" fill="#fff"/><circle cx="18" cy="26" r="2.7" fill="#fff"/><circle cx="18" cy="35" r="2.7" fill="#fff"/>
-    <path d="M36 11h17l10 10v27H36z" fill="#fff" stroke="#176da8" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M53 11v10h10" fill="#f7941d" stroke="#176da8" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M43 29h13" stroke="#f7941d" stroke-width="3.5" stroke-linecap="round"/>
-    <path d="M43 36h14M43 43h10" stroke="#176da8" stroke-width="3.5" stroke-linecap="round"/>
+  <desc id="desc">Logo IAResumo em azul e laranja, com cérebro e documento acima do nome</desc>
+  <rect width="320" height="240" rx="20" fill="#ffffff"/>
+
+  <g transform="translate(74 18)">
+    <!-- cérebro -->
+    <path d="M72 8C52 8 38 21 38 38c0 2 0 4 1 6-14 3-24 15-24 30 0 7 2 13 6 18-8 6-13 16-13 27 0 18 14 33 32 34 5 12 17 20 31 20 9 0 17-3 23-9V22C88 13 81 8 72 8Z" fill="#0867c8"/>
+    <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M43 54h13l15 15v28l15 15v25"/>
+      <path d="M35 88h14l14 14v31"/>
+      <path d="M56 29v18l17 17v39"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="43" cy="54" r="7"/>
+      <circle cx="35" cy="88" r="7"/>
+      <circle cx="56" cy="29" r="7"/>
+      <circle cx="63" cy="133" r="7"/>
+    </g>
+
+    <!-- documento -->
+    <path d="M101 11h53l28 28v111c0 12-10 22-22 22h-59c-8 0-14-6-14-14V25c0-8 6-14 14-14Z" fill="#ffffff" stroke="#0867c8" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M154 11v28h28Z" fill="#ff7900" stroke="#ff7900" stroke-width="1"/>
+    <line x1="113" y1="77" x2="156" y2="77" stroke="#ff7900" stroke-width="9" stroke-linecap="round"/>
+    <line x1="113" y1="100" x2="159" y2="100" stroke="#0867c8" stroke-width="9" stroke-linecap="round"/>
+    <line x1="113" y1="123" x2="149" y2="123" stroke="#0867c8" stroke-width="9" stroke-linecap="round"/>
   </g>
-  <text x="60" y="96" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="19" font-weight="800">
-    <tspan fill="#f7941d">IA</tspan><tspan fill="#176da8">Resumo</tspan>
-  </text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="49" y="220" font-size="50" fill="#ff7900">IA</text>
+    <text x="108" y="220" font-size="50" fill="#0867c8">Resumo</text>
+  </g>
 </svg>
