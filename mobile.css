@@ -48,8 +48,9 @@ summary,.support-button,nav a{touch-action:manipulation}
   .audit{grid-template-columns:1fr;gap:2px}
   .columns{grid-template-columns:1fr}
 
-  .support-cta{grid-template-columns:56px minmax(0,1fr);gap:10px;padding:10px 11px;margin-bottom:12px;border-radius:12px}
-  .support-logo{width:52px}
+  .support-cta{grid-template-columns:54px minmax(0,1fr);gap:10px;padding:10px 11px;margin-bottom:12px;border-radius:12px}
+  .support-brand{width:50px;height:50px;border-radius:12px}
+  .support-logo{width:41px;height:41px}
   .support-title{font-size:.94rem}
   .support-copy p{font-size:.81rem;line-height:1.38}
   .support-actions{grid-column:1/-1;padding-left:0;max-width:none;justify-content:flex-start;gap:7px}
@@ -80,8 +81,9 @@ summary,.support-button,nav a{touch-action:manipulation}
   .card{padding:13px}
   .note,.alert,.good,.legal{padding:10px 11px}
 
-  .support-cta{grid-template-columns:50px minmax(0,1fr);gap:9px;padding:9px 10px}
-  .support-logo{width:48px}
+  .support-cta{grid-template-columns:48px minmax(0,1fr);gap:9px;padding:9px 10px}
+  .support-brand{width:44px;height:44px;border-radius:11px}
+  .support-logo{width:36px;height:36px}
   .support-title{font-size:.91rem}
   .support-copy p{font-size:.79rem}
   .support-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
